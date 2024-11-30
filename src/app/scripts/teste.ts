@@ -1,11 +1,11 @@
-import { DynamoDBClient, ListTablesCommand } from "@aws-sdk/client-dynamodb";
+import { ListTablesCommand } from "@aws-sdk/client-dynamodb";
+import { dynamoDB } from '../config/Credentials'
 
 export const bomdia = async () => {
-    const client = new DynamoDBClient({ region: "us-west-2" });
-    const command = new ListTablesCommand({});
+    
     try {
-        const results = await client.send(command);
-        console.log(results.TableNames?.join("\n"));
+        const results = dynamoDB.send(new ListTablesCommand({}));
+        console.log(results);
     } catch (err) {
         console.error(err);
     }
